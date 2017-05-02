@@ -22,3 +22,15 @@ class Invoice:
             'readonly': Eval('state') != 'draft',
             },
         depends=['state', 'incoterm'])
+
+    @fields.depends('party')
+    def on_change_party(self):
+        super(Invoice, self).on_change_party()
+
+        self.incoterm = None
+        self.incoterm_place = None
+        if self.party:
+            self.incoterm = self.party.incoterm \
+                if self.party.incoterm else None
+            self.incoterm_place = self.party.incoterm_place \
+                if self.party.incoterm_place else None
