@@ -9,5 +9,8 @@ from . import sale
 def register():
     Pool.register(
         invoice.Invoice,
-        sale.Sale,
         module='account_invoice_incoterm', type_='model')
+    Pool.register(
+        sale.Sale,
+        depends=['sale_incoterm'],
+        module='pyme', type_='model')

@@ -7,9 +7,8 @@ from trytond.pyson import Bool, Eval
 __all__ = ['Invoice']
 
 
-class Invoice:
+class Invoice(metaclass=PoolMeta):
     __name__ = 'account.invoice'
-    __metaclass__ = PoolMeta
     incoterm = fields.Many2One('incoterm', 'Incoterm',
         states={
             'readonly': Eval('state') != 'draft',

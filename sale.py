@@ -5,9 +5,8 @@ from trytond.pool import PoolMeta
 __all__ = ['Sale']
 
 
-class Sale:
+class Sale(metaclass=PoolMeta):
     __name__ = 'sale.sale'
-    __metaclass__ = PoolMeta
 
     def _get_invoice_sale(self):
         invoice = super(Sale, self)._get_invoice_sale()
